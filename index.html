@@ -1,0 +1,1029 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VÖRNTEC - AI-Powered Gas Detection System</title>
+    <script type="module">
+        import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
+        mermaid.initialize({ 
+            startOnLoad: true,
+            theme: 'base',
+            themeVariables: {
+                primaryColor: '#3b82f6',
+                primaryTextColor: '#fff',
+                primaryBorderColor: '#1e40af',
+                lineColor: '#64748b',
+                secondaryColor: '#8b5cf6',
+                tertiaryColor: '#10b981',
+                fontSize: '14px'
+            }
+        });
+    </script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            line-height: 1.6;
+            color: #1a1a1a;
+            background: #ffffff;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        header {
+            background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+            color: white;
+            padding: 80px 0 60px;
+            text-align: center;
+        }
+
+        .logo {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            letter-spacing: -1px;
+        }
+
+        .tagline {
+            font-size: 1.25rem;
+            opacity: 0.9;
+            font-weight: 300;
+            margin-bottom: 10px;
+        }
+
+        .subtitle {
+            font-size: 0.95rem;
+            opacity: 0.7;
+            font-weight: 300;
+        }
+
+        section {
+            padding: 60px 0;
+            border-bottom: 1px solid #e5e7eb;
+        }
+
+        section:last-child {
+            border-bottom: none;
+        }
+
+        h2 {
+            font-size: 2rem;
+            margin-bottom: 40px;
+            color: #0f172a;
+            font-weight: 600;
+        }
+
+        h3 {
+            font-size: 1.5rem;
+            margin: 30px 0 15px;
+            color: #1e293b;
+            font-weight: 600;
+        }
+
+        h4 {
+            font-size: 1.15rem;
+            margin: 20px 0 10px;
+            color: #334155;
+            font-weight: 600;
+        }
+
+        .overview-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+
+        .card {
+            background: #f8fafc;
+            padding: 30px;
+            border-radius: 8px;
+            border: 1px solid #e2e8f0;
+        }
+
+        .card-title {
+            font-size: 1.15rem;
+            font-weight: 600;
+            margin-bottom: 12px;
+            color: #0f172a;
+        }
+
+        .card-content {
+            color: #475569;
+            font-size: 0.95rem;
+        }
+
+        .metrics {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin: 30px 0;
+        }
+
+        .metric {
+            text-align: center;
+            padding: 25px;
+            background: #f8fafc;
+            border-radius: 8px;
+            border: 1px solid #e2e8f0;
+        }
+
+        .metric-value {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: #0f172a;
+            margin-bottom: 8px;
+        }
+
+        .metric-label {
+            font-size: 0.9rem;
+            color: #64748b;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .chart-container {
+            margin: 30px 0;
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            border: 1px solid #e2e8f0;
+        }
+
+        .chart-container img {
+            width: 100%;
+            height: auto;
+            display: block;
+            border-radius: 4px;
+        }
+
+        .chart-caption {
+            margin-top: 15px;
+            font-size: 0.9rem;
+            color: #64748b;
+            text-align: center;
+            font-style: italic;
+        }
+
+        .feature-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin: 30px 0;
+        }
+
+        .feature-item {
+            padding: 20px;
+            background: #f8fafc;
+            border-left: 4px solid #0f172a;
+            border-radius: 4px;
+        }
+
+        .feature-item strong {
+            display: block;
+            margin-bottom: 8px;
+            color: #0f172a;
+        }
+
+        .tech-stack {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin: 20px 0;
+        }
+
+        .tech-badge {
+            padding: 8px 16px;
+            background: #0f172a;
+            color: white;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 500;
+        }
+
+        .sensors-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin: 30px 0;
+        }
+
+        .sensor {
+            padding: 15px;
+            background: white;
+            border: 1px solid #e2e8f0;
+            border-radius: 6px;
+        }
+
+        .sensor-name {
+            font-weight: 600;
+            color: #0f172a;
+            margin-bottom: 8px;
+        }
+
+        .sensor-detects {
+            font-size: 0.85rem;
+            color: #64748b;
+        }
+
+        .model-comparison {
+            overflow-x: auto;
+            margin: 30px 0;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background: white;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        th, td {
+            padding: 12px 15px;
+            text-align: left;
+            border-bottom: 1px solid #e2e8f0;
+        }
+
+        th {
+            background: #f8fafc;
+            font-weight: 600;
+            color: #0f172a;
+            font-size: 0.9rem;
+        }
+
+        td {
+            color: #475569;
+            font-size: 0.9rem;
+        }
+
+        tr:hover {
+            background: #f8fafc;
+        }
+
+        .highlight-row {
+            background: #f0fdf4;
+        }
+
+        .highlight-row:hover {
+            background: #dcfce7;
+        }
+
+        .workflow {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            margin: 30px 0;
+        }
+
+        .workflow-step {
+            display: flex;
+            align-items: flex-start;
+            gap: 20px;
+        }
+
+        .step-number {
+            min-width: 40px;
+            height: 40px;
+            background: #0f172a;
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 600;
+            font-size: 1.1rem;
+            flex-shrink: 0;
+        }
+
+        .step-content {
+            flex: 1;
+            padding-top: 8px;
+        }
+
+        .step-title {
+            font-weight: 600;
+            color: #0f172a;
+            margin-bottom: 5px;
+        }
+
+        .step-description {
+            color: #64748b;
+            font-size: 0.95rem;
+        }
+
+        .cta-section {
+            background: #0f172a;
+            color: white;
+            text-align: center;
+            padding: 60px 20px;
+            margin-top: 60px;
+        }
+
+        .cta-section h2 {
+            color: white;
+            margin-bottom: 20px;
+        }
+
+        .cta-section p {
+            font-size: 1.1rem;
+            opacity: 0.9;
+            margin-bottom: 30px;
+        }
+
+        .disclaimer {
+            background: #fef3c7;
+            border-left: 4px solid #f59e0b;
+            padding: 20px;
+            margin: 30px 0;
+            border-radius: 4px;
+        }
+
+        .disclaimer strong {
+            display: block;
+            margin-bottom: 10px;
+            color: #92400e;
+        }
+
+        .disclaimer p {
+            color: #78350f;
+            font-size: 0.95rem;
+        }
+
+        @media (max-width: 768px) {
+            header {
+                padding: 60px 0 40px;
+            }
+
+            .logo {
+                font-size: 2rem;
+            }
+
+            h2 {
+                font-size: 1.5rem;
+            }
+
+            .metrics {
+                grid-template-columns: 1fr;
+            }
+
+            .workflow-step {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="logo">VÖRNTEC</div>
+            <div class="tagline">AI-Powered Gas Detection & Classification System</div>
+            <div class="subtitle">Advanced Machine Learning for Industrial Safety</div>
+        </div>
+    </header>
+
+    <section id="overview">
+        <div class="container">
+            <h2>System Overview</h2>
+            
+            <div class="overview-grid">
+                <div class="card">
+                    <div class="card-title">Gas Classification</div>
+                    <div class="card-content">
+                        Machine learning models trained with drift characteristics to predict gas types across 4 classes: NoGas, Perfume, Smoke, and Mixture.
+                    </div>
+                </div>
+                
+                <div class="card">
+                    <div class="card-title">Drift Diagnosis</div>
+                    <div class="card-content">
+                        Temporal analysis using ΔR, |ΔR|, and EMA characteristics to detect sensor drift and failures above 15% threshold.
+                    </div>
+                </div>
+                
+                <div class="card">
+                    <div class="card-title">Leak Detection</div>
+                    <div class="card-content">
+                        Threshold-based logic monitoring concentration levels, duration, and rapid changes to identify dangerous leaks.
+                    </div>
+                </div>
+                
+                <div class="card">
+                    <div class="card-title">Automated Alerts</div>
+                    <div class="card-content">
+                        Real-time webhook integration for instant notifications when confirmed leaks or critical drift events are detected.
+                    </div>
+                </div>
+            </div>
+
+            <div class="disclaimer">
+                <strong>Important Note</strong>
+                <p>Gas classification and leak detection are independent processes. The system can classify "NoGas" while still detecting a leak if concentration exceeds safety thresholds, or classify "Smoke" without detecting a leak if concentration remains low.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="system-integration">
+        <div class="container">
+            <h2>Enterprise Integration Architecture</h2>
+
+            <h3>Complete System Architecture</h3>
+            <div class="chart-container" style="background: white; padding: 40px;">
+                <pre class="mermaid">
+flowchart LR
+    subgraph Sensors["Sensors"]
+        S[7 MQ Sensors<br/>MQ2-MQ135]
+    end
+
+    subgraph Orchestration["Orchestration"]
+        N8N[n8n<br/>Workflow<br/>Automation]
+        LG[LangGraph<br/>AI Agent<br/>Coordination]
+    end
+
+    subgraph ML["ML Models"]
+        Models[8 ML Algorithms<br/>Random Forest: 99.58%<br/>SVM, KNN, MLP, DT, etc.]
+    end
+
+    subgraph Data["Data Layer"]
+        VDB[Vector DB<br/>Pattern Matching]
+        TS[Time-Series DB<br/>Drift Tracking]
+    end
+
+    subgraph Analytics["AI Analytics"]
+        AN[Anomaly Detection<br/>Predictive Maintenance<br/>Root Cause Analysis<br/>Adaptive Thresholds]
+    end
+
+    subgraph MCP_Layer["MCP Integration"]
+        MCP[Model Context<br/>Protocol]
+    end
+
+    subgraph Enterprise["Enterprise Systems"]
+        SAP[SAP ERP<br/>Maintenance]
+        Teams[MS Teams<br/>Personnel Interaction]
+        Ext[External<br/>Systems]
+    end
+
+    S -->|Raw Data| N8N
+    N8N -->|Events| LG
+    LG -->|Classify| Models
+    N8N -->|Store| TS
+    Models -->|Patterns| VDB
+    
+    Models --> Analytics
+    TS --> Analytics
+    VDB --> Analytics
+    
+    Analytics -->|Actions| MCP
+    
+    MCP --> SAP
+    MCP --> Teams
+    MCP --> Ext
+    
+    SAP -.->|Feedback| N8N
+    Teams -.->|Feedback| N8N
+
+    classDef sensorStyle fill:#3b82f6,stroke:#1e40af,color:#fff,stroke-width:3px
+    classDef orchestrationStyle fill:#8b5cf6,stroke:#6d28d9,color:#fff,stroke-width:3px
+    classDef mlStyle fill:#10b981,stroke:#059669,color:#fff,stroke-width:3px
+    classDef dataStyle fill:#f59e0b,stroke:#d97706,color:#fff,stroke-width:3px
+    classDef analyticsStyle fill:#ec4899,stroke:#be185d,color:#fff,stroke-width:3px
+    classDef mcpStyle fill:#ef4444,stroke:#dc2626,color:#fff,stroke-width:3px
+    classDef enterpriseStyle fill:#64748b,stroke:#475569,color:#fff,stroke-width:3px
+
+    class S sensorStyle
+    class N8N,LG orchestrationStyle
+    class Models mlStyle
+    class VDB,TS dataStyle
+    class AN analyticsStyle
+    class MCP mcpStyle
+    class SAP,Teams,Ext enterpriseStyle
+                </pre>
+                <div class="chart-caption">Simplified system architecture: Sensors → Orchestration → ML → Analytics → Enterprise Integration</div>
+            </div>
+
+            <h3>Orchestration Layer</h3>
+            <div class="overview-grid">
+                <div class="card">
+                    <div class="card-title">n8n Workflow Automation</div>
+                    <div class="card-content">
+                        Event-driven workflow orchestration managing sensor data ingestion, alert routing, and multi-system coordination with visual pipeline configuration
+                    </div>
+                </div>
+                
+                <div class="card">
+                    <div class="card-title">LangGraph Agent Framework</div>
+                    <div class="card-content">
+                        State machine orchestration for complex AI decision flows, coordinating between ML models, vector databases, and external systems with deterministic execution paths
+                    </div>
+                </div>
+                
+                <div class="card">
+                    <div class="card-title">Model Context Protocol (MCP)</div>
+                    <div class="card-content">
+                        Standardized interface layer connecting AI agents to external systems, enabling secure bidirectional communication with enterprise platforms and data sources
+                    </div>
+                </div>
+            </div>
+
+            <h3>Machine Learning & AI Stack</h3>
+            <div class="feature-list">
+                <div class="feature-item">
+                    <strong>Random Forest Classifier</strong>
+                    Ensemble learning for gas classification with 99.58% accuracy, handling multiclass prediction across 56 drift-based features
+                </div>
+                <div class="feature-item">
+                    <strong>Support Vector Machines</strong>
+                    High-dimensional pattern recognition with RBF kernel for complex decision boundaries in sensor response space
+                </div>
+                <div class="feature-item">
+                    <strong>K-Nearest Neighbors</strong>
+                    Instance-based learning for real-time classification with optimized k-value selection
+                </div>
+                <div class="feature-item">
+                    <strong>Multi-Layer Perceptron</strong>
+                    Neural network architecture for non-linear pattern detection in temporal sensor data
+                </div>
+                <div class="feature-item">
+                    <strong>Decision Trees</strong>
+                    Interpretable rule-based classification for transparent decision-making processes
+                </div>
+                <div class="feature-item">
+                    <strong>Gradient Boosting Methods</strong>
+                    Sequential ensemble learning for incremental model improvement and error correction
+                </div>
+            </div>
+
+            <h3>Data Infrastructure</h3>
+            <div class="overview-grid">
+                <div class="card">
+                    <div class="card-title">Vector Database</div>
+                    <div class="card-content">
+                        <strong>Purpose:</strong> Semantic search and similarity matching<br>
+                        <strong>Storage:</strong> Embedded sensor patterns, historical drift signatures<br>
+                        <strong>Queries:</strong> Nearest neighbor searches for anomaly detection<br>
+                        <strong>Integration:</strong> Real-time pattern matching against known failure modes
+                    </div>
+                </div>
+                
+                <div class="card">
+                    <div class="card-title">Time-Series Storage</div>
+                    <div class="card-content">
+                        <strong>Purpose:</strong> High-frequency sensor data retention<br>
+                        <strong>Features:</strong> Temporal windowing, drift calculation, EMA tracking<br>
+                        <strong>Analysis:</strong> Statistical aggregations and trend detection<br>
+                        <strong>Retention:</strong> Multi-tier storage for real-time and historical analysis
+                    </div>
+                </div>
+            </div>
+
+            <h3>Enterprise System Connections</h3>
+            <div class="workflow">
+                <div class="workflow-step">
+                    <div class="step-number">1</div>
+                    <div class="step-content">
+                        <div class="step-title">SAP ERP Integration</div>
+                        <div class="step-description">
+                            <strong>Via MCP:</strong> Maintenance work orders, asset management, inventory tracking<br>
+                            <strong>Data Flow:</strong> Leak events trigger automatic maintenance requests<br>
+                            <strong>Sync:</strong> Sensor calibration records, replacement part orders
+                        </div>
+                    </div>
+                </div>
+                <div class="workflow-step">
+                    <div class="step-number">2</div>
+                    <div class="step-content">
+                        <div class="step-title">Microsoft Teams Integration</div>
+                        <div class="step-description">
+                            <strong>Via MCP:</strong> Two-way communication with operations and safety personnel<br>
+                            <strong>Interaction:</strong> Real-time alerts, status queries, command acknowledgment, collaborative response<br>
+                            <strong>Rich Content:</strong> Embedded sensor readings, classification confidence, location data, action recommendations
+                        </div>
+                    </div>
+                </div>
+                <div class="workflow-step">
+                    <div class="step-number">3</div>
+                    <div class="step-content">
+                        <div class="step-title">External Data Sources</div>
+                        <div class="step-description">
+                            <strong>Via MCP:</strong> Weather data, facility schedules, regulatory databases<br>
+                            <strong>Context:</strong> Environmental factors affecting sensor performance<br>
+                            <strong>Compliance:</strong> Automated reporting to regulatory systems
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <h3>AI-Powered Analytics</h3>
+            <div class="feature-list">
+                <div class="feature-item">
+                    <strong>Anomaly Detection</strong>
+                    Unsupervised learning identifying novel sensor patterns not present in training data
+                </div>
+                <div class="feature-item">
+                    <strong>Predictive Maintenance</strong>
+                    Time-series forecasting for sensor drift progression and calibration scheduling
+                </div>
+                <div class="feature-item">
+                    <strong>Root Cause Analysis</strong>
+                    LLM-powered investigation correlating alerts with operational events and environmental factors
+                </div>
+                <div class="feature-item">
+                    <strong>Adaptive Thresholds</strong>
+                    Reinforcement learning optimizing detection parameters based on operational feedback
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="performance">
+        <div class="container">
+            <h2>Performance Metrics</h2>
+            
+            <div class="metrics">
+                <div class="metric">
+                    <div class="metric-value">99.58%</div>
+                    <div class="metric-label">Accuracy</div>
+                </div>
+                <div class="metric">
+                    <div class="metric-value">99.58%</div>
+                    <div class="metric-label">Precision</div>
+                </div>
+                <div class="metric">
+                    <div class="metric-value">99.58%</div>
+                    <div class="metric-label">Recall</div>
+                </div>
+                <div class="metric">
+                    <div class="metric-value">3.78M</div>
+                    <div class="metric-label">Value Score</div>
+                </div>
+            </div>
+
+            <h3>Model Performance Comparison</h3>
+            <div class="model-comparison">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Model</th>
+                            <th>Accuracy</th>
+                            <th>Precision</th>
+                            <th>Recall</th>
+                            <th>F1-Score</th>
+                            <th>Value Score</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="highlight-row">
+                            <td><strong>Random Forest</strong></td>
+                            <td>99.58%</td>
+                            <td>99.58%</td>
+                            <td>99.58%</td>
+                            <td>99.58%</td>
+                            <td>3,780,000</td>
+                        </tr>
+                        <tr>
+                            <td>K-Nearest Neighbors</td>
+                            <td>99.32%</td>
+                            <td>99.33%</td>
+                            <td>99.32%</td>
+                            <td>99.32%</td>
+                            <td>3,742,500</td>
+                        </tr>
+                        <tr>
+                            <td>Decision Tree</td>
+                            <td>99.17%</td>
+                            <td>99.17%</td>
+                            <td>99.17%</td>
+                            <td>99.17%</td>
+                            <td>3,720,000</td>
+                        </tr>
+                        <tr>
+                            <td>Support Vector Machine</td>
+                            <td>98.59%</td>
+                            <td>98.60%</td>
+                            <td>98.59%</td>
+                            <td>98.59%</td>
+                            <td>3,637,500</td>
+                        </tr>
+                        <tr>
+                            <td>Quadratic Discriminant Analysis</td>
+                            <td>92.29%</td>
+                            <td>92.50%</td>
+                            <td>92.29%</td>
+                            <td>92.27%</td>
+                            <td>2,730,000</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <h3>Confusion Matrix - Random Forest</h3>
+            <div class="chart-container">
+                <img src="images/confusion matrix_rf.png" alt="Confusion Matrix for Random Forest Model">
+                <div class="chart-caption">Random Forest achieves near-perfect classification across all gas types</div>
+            </div>
+
+            <h3>ROC Curves - Multiclass Classification</h3>
+            <div class="chart-container">
+                <img src="images/multiclass ROC (OvR)_RF.png" alt="ROC Curves for Random Forest">
+                <div class="chart-caption">One-vs-Rest ROC curves demonstrating exceptional discriminative ability</div>
+            </div>
+        </div>
+    </section>
+
+    <section id="technical">
+        <div class="container">
+            <h2>Technical Architecture</h2>
+
+            <h3>Sensor Array</h3>
+            <div class="sensors-grid">
+                <div class="sensor">
+                    <div class="sensor-name">MQ2</div>
+                    <div class="sensor-detects">LPG, Butane, Methane, Smoke</div>
+                </div>
+                <div class="sensor">
+                    <div class="sensor-name">MQ3</div>
+                    <div class="sensor-detects">Smoke, Ethanol, Alcohol</div>
+                </div>
+                <div class="sensor">
+                    <div class="sensor-name">MQ5</div>
+                    <div class="sensor-detects">LPG, Natural Gas</div>
+                </div>
+                <div class="sensor">
+                    <div class="sensor-name">MQ6</div>
+                    <div class="sensor-detects">LPG, Butane</div>
+                </div>
+                <div class="sensor">
+                    <div class="sensor-name">MQ7</div>
+                    <div class="sensor-detects">Carbon Monoxide</div>
+                </div>
+                <div class="sensor">
+                    <div class="sensor-name">MQ8</div>
+                    <div class="sensor-detects">Hydrogen</div>
+                </div>
+                <div class="sensor">
+                    <div class="sensor-name">MQ135</div>
+                    <div class="sensor-detects">Air Quality, Smoke, Benzene</div>
+                </div>
+            </div>
+
+            <h3>Feature Engineering</h3>
+            <div class="chart-container">
+                <img src="images/feature importance.png" alt="Feature Importance Analysis">
+                <div class="chart-caption">Drift characteristics provide robust features for gas classification</div>
+            </div>
+
+            <div class="feature-list">
+                <div class="feature-item">
+                    <strong>56 Total Features</strong>
+                    7 sensors × 8 drift characteristics per sensor
+                </div>
+                <div class="feature-item">
+                    <strong>ΔR Analysis</strong>
+                    Difference between maximum resistance and baseline
+                </div>
+                <div class="feature-item">
+                    <strong>|ΔR| Ratio</strong>
+                    Normalized resistance ratio (max/baseline)
+                </div>
+                <div class="feature-item">
+                    <strong>EMA Tracking</strong>
+                    Exponential Moving Averages with 3 alpha values
+                </div>
+            </div>
+
+            <h3>Sensor Response Distributions</h3>
+            <div class="chart-container">
+                <img src="images/mq2 distribution.png" alt="MQ2 Sensor Distribution">
+                <div class="chart-caption">MQ2 sensor response patterns across different gas exposures</div>
+            </div>
+        </div>
+    </section>
+
+    <section id="workflow">
+        <div class="container">
+            <h2>System Workflow</h2>
+
+            <h3>Training Phase</h3>
+            <div class="workflow">
+                <div class="workflow-step">
+                    <div class="step-number">1</div>
+                    <div class="step-content">
+                        <div class="step-title">Data Collection</div>
+                        <div class="step-description">Load raw sensor data from 7 MQ sensors with 4 gas class labels</div>
+                    </div>
+                </div>
+                <div class="workflow-step">
+                    <div class="step-number">2</div>
+                    <div class="step-content">
+                        <div class="step-title">Feature Extraction</div>
+                        <div class="step-description">Calculate drift characteristics using temporal windows (56 features total)</div>
+                    </div>
+                </div>
+                <div class="workflow-step">
+                    <div class="step-number">3</div>
+                    <div class="step-content">
+                        <div class="step-title">Model Training</div>
+                        <div class="step-description">Train 8 different ML models with hyperparameter optimization</div>
+                    </div>
+                </div>
+                <div class="workflow-step">
+                    <div class="step-number">4</div>
+                    <div class="step-content">
+                        <div class="step-title">Value Evaluation</div>
+                        <div class="step-description">Score models using: Value = VTP×TP + VTN×TN + VFP×FP + VFN×FN</div>
+                    </div>
+                </div>
+                <div class="workflow-step">
+                    <div class="step-number">5</div>
+                    <div class="step-content">
+                        <div class="step-title">Model Selection</div>
+                        <div class="step-description">Deploy best performing model (Random Forest: 99.58% accuracy)</div>
+                    </div>
+                </div>
+            </div>
+
+            <h3>Real-Time Prediction</h3>
+            <div class="workflow">
+                <div class="workflow-step">
+                    <div class="step-number">1</div>
+                    <div class="step-content">
+                        <div class="step-title">Sensor Reading</div>
+                        <div class="step-description">Receive raw measurements from all 7 MQ sensors</div>
+                    </div>
+                </div>
+                <div class="workflow-step">
+                    <div class="step-number">2</div>
+                    <div class="step-content">
+                        <div class="step-title">Drift Calculation</div>
+                        <div class="step-description">Compute temporal drift characteristics from sensor history</div>
+                    </div>
+                </div>
+                <div class="workflow-step">
+                    <div class="step-number">3</div>
+                    <div class="step-content">
+                        <div class="step-title">Gas Classification</div>
+                        <div class="step-description">Predict gas type with confidence probabilities</div>
+                    </div>
+                </div>
+                <div class="workflow-step">
+                    <div class="step-number">4</div>
+                    <div class="step-content">
+                        <div class="step-title">Drift Detection</div>
+                        <div class="step-description">Identify sensor drift exceeding 15% threshold</div>
+                    </div>
+                </div>
+                <div class="workflow-step">
+                    <div class="step-number">5</div>
+                    <div class="step-content">
+                        <div class="step-title">Leak Detection</div>
+                        <div class="step-description">Check concentration (>3000 ppm), duration (>30s), and rapid changes (>50%)</div>
+                    </div>
+                </div>
+                <div class="workflow-step">
+                    <div class="step-number">6</div>
+                    <div class="step-content">
+                        <div class="step-title">Alert Generation</div>
+                        <div class="step-description">Send webhook notifications for confirmed leaks or critical drift</div>
+                    </div>
+                </div>
+            </div>
+
+            <h3>System Flow Diagrams</h3>
+            <div class="chart-container">
+                <img src="images/flow_chart_modeling.png" alt="Modeling Flow Chart">
+                <div class="chart-caption">Complete modeling and evaluation pipeline</div>
+            </div>
+        </div>
+    </section>
+
+    <section id="implementation">
+        <div class="container">
+            <h2>Implementation Details</h2>
+
+            <h3>Technology Stack</h3>
+            <div class="tech-stack">
+                <span class="tech-badge">Python</span>
+                <span class="tech-badge">scikit-learn</span>
+                <span class="tech-badge">Random Forest</span>
+                <span class="tech-badge">KNN</span>
+                <span class="tech-badge">SVM</span>
+                <span class="tech-badge">MLP</span>
+                <span class="tech-badge">FastAPI</span>
+                <span class="tech-badge">Webhook Integration</span>
+                <span class="tech-badge">Real-time Processing</span>
+            </div>
+
+            <h3>Key Capabilities</h3>
+            <div class="feature-list">
+                <div class="feature-item">
+                    <strong>Multi-Model Evaluation</strong>
+                    8 different ML algorithms tested and optimized for best performance
+                </div>
+                <div class="feature-item">
+                    <strong>Value-Based Selection</strong>
+                    Custom scoring function weighing false negatives heavily (VFN = -5000)
+                </div>
+                <div class="feature-item">
+                    <strong>Temporal Analysis</strong>
+                    Window-based drift detection using exponential moving averages
+                </div>
+                <div class="feature-item">
+                    <strong>Configurable Thresholds</strong>
+                    Adjustable concentration, duration, and change rate parameters
+                </div>
+                <div class="feature-item">
+                    <strong>Independent Detection</strong>
+                    Separate gas classification and leak detection pipelines
+                </div>
+                <div class="feature-item">
+                    <strong>Real-Time Alerts</strong>
+                    Instant webhook notifications to external systems
+                </div>
+            </div>
+
+            <h3>Detection Criteria</h3>
+            <div class="overview-grid">
+                <div class="card">
+                    <div class="card-title">Concentration Threshold</div>
+                    <div class="card-content">
+                        Total gas concentration exceeding 3000 ppm triggers potential leak status
+                    </div>
+                </div>
+                
+                <div class="card">
+                    <div class="card-title">Duration Requirement</div>
+                    <div class="card-content">
+                        Leak must persist for at least 30 seconds to be confirmed as critical
+                    </div>
+                </div>
+                
+                <div class="card">
+                    <div class="card-title">Rapid Change Detection</div>
+                    <div class="card-content">
+                        Sudden concentration variations exceeding 50% indicate emergency conditions
+                    </div>
+                </div>
+                
+                <div class="card">
+                    <div class="card-title">Drift Monitoring</div>
+                    <div class="card-content">
+                        Sensor drift above 15% triggers maintenance alerts and calibration requirements
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="data-sources">
+        <div class="container">
+            <h2>Data Sources & Validation</h2>
+
+            <h3>Training Data</h3>
+            <div class="overview-grid">
+                <div class="card">
+                    <div class="card-title">Gas Sensor Array Drift Dataset</div>
+                    <div class="card-content">
+                        <strong>Source:</strong> UCI Machine Learning Repository<br>
+                        <strong>Purpose:</strong> Drift characteristics methodology<br>
+                        <strong>Gases:</strong> Ethanol, Ethylene, Ammonia, Acetaldehyde, Acetone, Toluene<br>
+                        <strong>Application:</strong> Temporal drift analysis framework
+                    </div>
+                </div>
+                
+                <div class="card">
+                    <div class="card-title">MultimodalGasData Dataset</div>
+                    <div class="card-content">
+                        <strong>Source:</strong> Mendeley Data<br>
+                        <strong>Purpose:</strong> Real-world MQ sensor training data<br>
+                        <strong>Classes:</strong> NoGas, Perfume, Smoke, Mixture<br>
+                        <strong>Sensors:</strong> MQ2, MQ3, MQ5, MQ6, MQ7, MQ8, MQ135
+                    </div>
+                </div>
+            </div>
+
+            <div class="disclaimer">
+                <strong>Dataset Limitations</strong>
+                <p>The MQ2 sensor can detect methane physically, but the training dataset does not include a specific "Methane" class. If methane is present, the system will classify it as "Smoke" or "Mixture" based on sensor response patterns. The leak detection system operates independently and will identify dangerous concentrations regardless of gas type classification.</p>
+            </div>
+        </div>
+    </section>
+
+    <div class="cta-section">
+        <div class="container">
+            <h2>Ready to Deploy Industrial-Grade Gas Detection</h2>
+            <p>Advanced machine learning delivering 99.58% accuracy with enterprise-ready integration</p>
+        </div>
+    </div>
+
+</body>
+</html>
