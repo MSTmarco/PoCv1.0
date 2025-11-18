@@ -442,29 +442,29 @@
                 <pre class="mermaid">
 flowchart LR
     subgraph Sensors["Sensors"]
-        S[7 MQ Sensors<br/>MQ2-MQ135]
+        S[7 MQ Sensors<br/>MQ2-MQ135<br/>Raw Data Collection]
     end
 
-    subgraph Orchestration["Orchestration"]
-        N8N[n8n<br/>Workflow<br/>Automation]
-        LG[LangGraph<br/>AI Agent<br/>Coordination]
+    subgraph Orchestrator["Orchestrator"]
+        N8N[n8n<br/>Event Routing<br/>Data Encapsulation<br/>Logging]
     end
 
-    subgraph ML["ML Models"]
-        Models[8 ML Algorithms<br/>Random Forest: 99.58%<br/>SVM, KNN, MLP, DT, etc.]
+    subgraph Classifier["ML Classifier"]
+        Models[8 ML Algorithms<br/>Random Forest: 99.58%<br/>SVM, KNN, MLP, DT<br/>Classification & Scoring]
+        LG[LangGraph<br/>Agent Coordination<br/>Decision Logic]
     end
 
     subgraph Data["Data Layer"]
-        VDB[Vector DB<br/>Pattern Matching]
-        TS[Time-Series DB<br/>Drift Tracking]
+        VDB[Vector DB<br/>Semantic Search<br/>Pattern Storage]
+        TS[Time-Series DB<br/>Drift Tracking<br/>Temporal Evolution]
     end
 
     subgraph Analytics["AI Analytics"]
-        AN[Anomaly Detection<br/>Predictive Maintenance<br/>Root Cause Analysis<br/>Adaptive Thresholds]
+        AN[Anomaly Detection<br/>Predictive Maintenance<br/>Root Cause Analysis<br/>Adaptive Alerts]
     end
 
     subgraph MCP_Layer["MCP Integration"]
-        MCP[Model Context<br/>Protocol]
+        MCP[Model Context<br/>Protocol<br/>Action Generation]
     end
 
     subgraph Enterprise["Enterprise Systems"]
@@ -474,16 +474,15 @@ flowchart LR
     end
 
     S -->|Raw Data| N8N
-    N8N -->|Events| LG
-    LG -->|Classify| Models
-    N8N -->|Store| TS
-    Models -->|Patterns| VDB
+    N8N -->|Route to Models| Models
+    Models -->|Classifications & Scores| LG
+    LG -->|Store Results| VDB
+    LG -->|Store Results| TS
     
-    Models --> Analytics
-    TS --> Analytics
     VDB --> Analytics
+    TS --> Analytics
     
-    Analytics -->|Actions| MCP
+    Analytics -->|Trigger Actions| MCP
     
     MCP --> SAP
     MCP --> Teams
@@ -491,46 +490,54 @@ flowchart LR
     
     SAP -.->|Feedback| N8N
     Teams -.->|Feedback| N8N
+    Ext -.->|Context| Analytics
 
     classDef sensorStyle fill:#3b82f6,stroke:#1e40af,color:#fff,stroke-width:3px
     classDef orchestrationStyle fill:#8b5cf6,stroke:#6d28d9,color:#fff,stroke-width:3px
-    classDef mlStyle fill:#10b981,stroke:#059669,color:#fff,stroke-width:3px
+    classDef classifierStyle fill:#10b981,stroke:#059669,color:#fff,stroke-width:3px
     classDef dataStyle fill:#f59e0b,stroke:#d97706,color:#fff,stroke-width:3px
     classDef analyticsStyle fill:#ec4899,stroke:#be185d,color:#fff,stroke-width:3px
     classDef mcpStyle fill:#ef4444,stroke:#dc2626,color:#fff,stroke-width:3px
     classDef enterpriseStyle fill:#64748b,stroke:#475569,color:#fff,stroke-width:3px
 
     class S sensorStyle
-    class N8N,LG orchestrationStyle
-    class Models mlStyle
+    class N8N orchestrationStyle
+    class Models,LG classifierStyle
     class VDB,TS dataStyle
     class AN analyticsStyle
     class MCP mcpStyle
     class SAP,Teams,Ext enterpriseStyle
                 </pre>
-                <div class="chart-caption">Simplified system architecture: Sensors → Orchestration → ML → Analytics → Enterprise Integration</div>
+                <div class="chart-caption">Optimized system architecture: Sensors → Orchestrator → ML Classification → Agent Coordination → Data Storage → Analytics → Enterprise Actions</div>
             </div>
 
             <h3>Orchestration Layer</h3>
             <div class="overview-grid">
                 <div class="card">
-                    <div class="card-title">n8n Workflow Automation</div>
+                    <div class="card-title">n8n Orchestrator</div>
                     <div class="card-content">
-                        Event-driven workflow orchestration managing sensor data ingestion, alert routing, and multi-system coordination with visual pipeline configuration
+                        Primary event orchestrator receiving raw sensor data, routing to appropriate classifiers, managing data flow, and generating system-wide events with comprehensive logging
                     </div>
                 </div>
                 
                 <div class="card">
-                    <div class="card-title">LangGraph Agent Framework</div>
+                    <div class="card-title">ML Classifier Stack</div>
                     <div class="card-content">
-                        State machine orchestration for complex AI decision flows, coordinating between ML models, vector databases, and external systems with deterministic execution paths
+                        8 machine learning algorithms (Random Forest, SVM, KNN, MLP, Decision Trees, etc.) performing classification, prediction, and scoring on routed sensor data
+                    </div>
+                </div>
+                
+                <div class="card">
+                    <div class="card-title">LangGraph Agent</div>
+                    <div class="card-content">
+                        Post-classification agent coordination handling decision logic, result aggregation, and intelligent routing of classified data to storage and analytics systems
                     </div>
                 </div>
                 
                 <div class="card">
                     <div class="card-title">Model Context Protocol (MCP)</div>
                     <div class="card-content">
-                        Standardized interface layer connecting AI agents to external systems, enabling secure bidirectional communication with enterprise platforms and data sources
+                        Standardized interface layer for action generation, connecting analytics results to enterprise platforms with secure bidirectional communication
                     </div>
                 </div>
             </div>
@@ -568,20 +575,20 @@ flowchart LR
                 <div class="card">
                     <div class="card-title">Vector Database</div>
                     <div class="card-content">
-                        <strong>Purpose:</strong> Semantic search and similarity matching<br>
-                        <strong>Storage:</strong> Embedded sensor patterns, historical drift signatures<br>
+                        <strong>Purpose:</strong> Semantic search and pattern storage<br>
+                        <strong>Storage:</strong> Classified results, sensor patterns, historical signatures<br>
                         <strong>Queries:</strong> Nearest neighbor searches for anomaly detection<br>
-                        <strong>Integration:</strong> Real-time pattern matching against known failure modes
+                        <strong>Source:</strong> LangGraph agent stores classification results post-ML processing
                     </div>
                 </div>
                 
                 <div class="card">
-                    <div class="card-title">Time-Series Storage</div>
+                    <div class="card-title">Time-Series Database</div>
                     <div class="card-content">
-                        <strong>Purpose:</strong> High-frequency sensor data retention<br>
-                        <strong>Features:</strong> Temporal windowing, drift calculation, EMA tracking<br>
-                        <strong>Analysis:</strong> Statistical aggregations and trend detection<br>
-                        <strong>Retention:</strong> Multi-tier storage for real-time and historical analysis
+                        <strong>Purpose:</strong> Temporal evolution and drift tracking<br>
+                        <strong>Storage:</strong> Classification scores, confidence levels, drift progression<br>
+                        <strong>Analysis:</strong> Temporal patterns, statistical aggregations, trend detection<br>
+                        <strong>Source:</strong> LangGraph agent stores timestamped classification outputs
                     </div>
                 </div>
             </div>
